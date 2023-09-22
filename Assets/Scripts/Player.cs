@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public GameObject enemy;
+
     // 0 = Neutral, 1 = Strike, 2 = Throw, 3 = Block
     public int playerState = 0;
 
