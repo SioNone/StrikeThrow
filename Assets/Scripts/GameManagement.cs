@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManagement : MonoBehaviour
 {
     public GameObject playerOne, playerTwo;
+    public float moveSpeed = 10f;
     public int playerOneScore, playerTwoScore;
     public int playerOneState, playerTwoState;
 
@@ -22,6 +23,8 @@ public class GameManagement : MonoBehaviour
         playerOneState = playerOneScript.playerState;
         playerTwoState = playerTwoScript.playerState;
 
+        float step = moveSpeed * Time.deltaTime;
+
         // There's probably a better way of doing this part below (maybe? Idk)
 
         // If a player exits neutral
@@ -33,6 +36,8 @@ public class GameManagement : MonoBehaviour
                 Debug.Log("Player 1 Pushes");
 
                 // Move Players | Players Move Right
+                playerOne.transform.position = Vector2.MoveTowards(playerOne.transform.position, playerOne.transform.position - new Vector3(1, 0, 0), step);
+                playerTwo.transform.position = Vector2.MoveTowards(playerTwo.transform.position, playerTwo.transform.position - new Vector3(1, 0, 0), step);
 
                 // Update Scores
                 playerOneScore += 1;
@@ -56,6 +61,10 @@ public class GameManagement : MonoBehaviour
             {
                 Debug.Log("Clash");
             }
+
+            // Reset Players to neutral
+            playerOneScript.playerState = 0;
+            playerTwoScript.playerState = 0;
         }
 
         if (playerOneScore == 5 || playerTwoScore == 5)
