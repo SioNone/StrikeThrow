@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManagement : MonoBehaviour
 {
     public GameObject playerOne, playerTwo;
-    public float moveSpeed = 10f;
+    public float moveSpeed = 3f;
     public int playerOneScore, playerTwoScore;
     public int playerOneState, playerTwoState;
 
@@ -36,8 +36,8 @@ public class GameManagement : MonoBehaviour
                 Debug.Log("Player 1 Pushes");
 
                 // Move Players | Players Move Right
-                playerOne.transform.position = Vector2.MoveTowards(playerOne.transform.position, playerOne.transform.position - new Vector3(1, 0, 0), step);
-                playerTwo.transform.position = Vector2.MoveTowards(playerTwo.transform.position, playerTwo.transform.position - new Vector3(1, 0, 0), step);
+                playerOne.transform.position += new Vector3(1, 0, 0);
+                playerTwo.transform.position += new Vector3(1, 0, 0);
 
                 // Update Scores
                 playerOneScore += 1;
@@ -50,6 +50,8 @@ public class GameManagement : MonoBehaviour
                 Debug.Log("Player 2 Pushes");
 
                 // Move Players | Players Move Left
+                playerOne.transform.position -= new Vector3(1, 0, 0);
+                playerTwo.transform.position -= new Vector3(1, 0, 0);
 
                 // Update Scores
                 playerTwoScore += 1;
@@ -63,8 +65,8 @@ public class GameManagement : MonoBehaviour
             }
 
             // Reset Players to neutral
-            playerOneScript.playerState = 0;
-            playerTwoScript.playerState = 0;
+            // playerOneScript.playerState = 0;
+            // playerTwoScript.playerState = 0;
         }
 
         if (playerOneScore == 5 || playerTwoScore == 5)

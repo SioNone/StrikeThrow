@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
 
     [Header("Action Properties")]
     // Time until actions become active
-    public float strikeStartup, throwStartup, blockStartup;
+    public float strikeStartup, throwStartup;
 
     // How long actions are active for
     public float strikeActive, throwActive, blockActive;
@@ -28,19 +28,35 @@ public class Player : MonoBehaviour
         // Strike
         if (Input.GetKeyDown(strikeButton))
         {
-            playerState = 1;
+            Invoke("Strike", strikeStartup);
         }
 
         // Throw
         if (Input.GetKeyDown(throwButton))
         {
-            playerState = 2;
+            Invoke("Throw", throwStartup);
         }
 
         // Block
         if (Input.GetKeyDown(blockButton))
         {
             playerState = 3;
+            Invoke("Block", blockActive);
         }
+    }
+
+    void Strike()
+    {
+        playerState = 1;
+    }
+
+    void Throw()
+    {
+        playerState = 2;
+    }
+
+    void Block()
+    {
+        playerState = 0;
     }
 }
